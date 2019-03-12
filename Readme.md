@@ -2,8 +2,9 @@
 
 Time is a library that provides timekeeping functionality for Arduino.
 
-The code is derived from the Playground DateTime library but is updated
-to provide an API that is more flexible and easier to use.
+The code is derived from the Pual Stroffregen's Time Library, which itseldf is derived
+from the Playground DateTime library but is updated to provide an API that is more 
+flexible and easier to use.
 
 A primary goal was to enable date and time functionality that can be used with
 a variety of external time sources with minimum differences required in sketch logic.
@@ -12,6 +13,9 @@ Example sketches illustrate how similar sketch code can be used with: a Real Tim
 internet NTP time service, GPS time data, and Serial time messages from a computer
 for time synchronization.
 
+This fork adds milliseconds to the time format, stored as an offset of the system `millis()`
+call, and leap second detection, if available.
+
 ## Functionality
 
 The functions available in the library include
@@ -19,7 +23,8 @@ The functions available in the library include
 ```c
 hour();            // the hour now  (0-23)
 minute();          // the minute now (0-59)
-second();          // the second now (0-59)
+second();          // the second now (0-60, including leap seconds, if available)
+millisecond();     // the second now (0-999)
 day();             // the day now (1-31)
 weekday();         // day of the week (1-7), Sunday is day 1
 month();           // the month now (1-12)
